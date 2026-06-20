@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wellness Hub — Wellness é um caminho</title>
+<meta name="description" content="Café, loja e espaço de bem-estar em Lisboa. Comida de verdade, escolhas conscientes, comunidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- decorative cosmic dust, fixed, behind everything -->
+<div class="cosmic-bg" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="#sobre-nos">Sobre nós</a>
+      <a href="#cafe">Café</a>
+      <a href="#loja">Loja</a>
+      <a href="#workshops">Workshops</a>
+    </nav>
+
+    <a href="#top" class="logo" aria-label="The Wellness Hub — início">
+      <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" class="logo-ring"></circle>
+        <g class="logo-flower">
+          <path d="M60 60 L60 22 C68 30 68 46 60 60 Z" class="petal petal-1"></path>
+          <path d="M60 60 L93 41 C90 51 78 59 60 60 Z" class="petal petal-2"></path>
+          <path d="M60 60 L93 79 C84 84 68 82 60 60 Z" class="petal petal-3"></path>
+          <path d="M60 60 L60 98 C52 90 52 74 60 60 Z" class="petal petal-4"></path>
+          <path d="M60 60 L27 79 C30 69 42 61 60 60 Z" class="petal petal-5"></path>
+          <path d="M60 60 L27 41 C36 36 52 38 60 60 Z" class="petal petal-6"></path>
+        </g>
+        <text x="60" y="20" class="logo-text-top" textLength="80" lengthAdjust="spacingAndGlyphs">THE WELLNESS HUB</text>
+        <text x="60" y="106" class="logo-text-bottom" textLength="64" lengthAdjust="spacingAndGlyphs">ON THE PATH</text>
+        <g class="logo-stars">
+          <circle cx="22" cy="34" r="1.4"></circle>
+          <circle cx="98" cy="86" r="1.4"></circle>
+        </g>
+      </svg>
+    </a>
+
+    <nav class="nav-right">
+      <a href="#eventos">Eventos</a>
+      <a href="#jornal">Jornal</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="btn btn-primary btn-small">Visita-nos</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- mobile drawer -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#sobre-nos">Sobre nós</a>
+    <a href="#cafe">Café</a>
+    <a href="#loja">Loja</a>
+    <a href="#workshops">Workshops</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#jornal">Jornal</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#contacto" class="btn btn-primary">Visita-nos</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="sobre-nos">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="sparkle sparkle-1" aria-hidden="true">✦</span>
+      <h1>Wellness<br>é um caminho.</h1>
+      <p class="hero-sub">Nutre o corpo. Expande a mente.<br>Segue o teu ritmo.</p>
+      <a href="#cafe" class="btn btn-primary">Explora o Hub <span class="btn-spark">✦</span></a>
+
+      <ul class="hero-pillars">
+        <li>Nourish</li>
+        <li class="pillar-dot">✦</li>
+        <li>Grow</li>
+        <li class="pillar-dot">✦</li>
+        <li>Balance</li>
+        <li class="pillar-dot">✦</li>
+        <li>Connect</li>
+      </ul>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=1400&auto=format&fit=crop" alt="Interior acolhedor do café, com plantas, prateleiras de madeira e luzes suspensas" loading="eager">
+      </div>
+    </div>
+  </div>
+  <div class="hero-dust" aria-hidden="true"></div>
+</section>
+
+<!-- ============ FEATURE ICONS STRIP ============ -->
+<section class="strip" aria-label="O que encontras no Hub">
+  <div class="strip-inner">
+
+    <a href="#cafe" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 18h22a2 2 0 0 1 2 2v6c0 7-5 12-13 12s-13-5-13-12v-6a2 2 0 0 1 2-2Z"/><path d="M34 20h3a4 4 0 0 1 0 8h-3"/><path d="M14 10c0 2-2 2-2 4M21 10c0 2-2 2-2 4M28 10c0 2-2 2-2 4"/></svg>
+      <span class="strip-label">Café</span>
+      <span class="strip-desc">Comida de verdade,<br>feita com amor.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+    <a href="#loja" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 16h28l-2 22a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3L10 16Z"/><path d="M17 16v-2a7 7 0 0 1 14 0v2"/><path d="M24 24v6M21 27h6"/></svg>
+      <span class="strip-label">Loja</span>
+      <span class="strip-desc">Produtos naturais<br>e sustentáveis.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+    <a href="#panzinha" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 22c0-6 4-10 10-10s10 4 10 10"/><path d="M9 22h30l-2 13a4 4 0 0 1-4 3H15a4 4 0 0 1-4-3L9 22Z"/><circle cx="19" cy="29" r="1.4"/><circle cx="29" cy="29" r="1.4"/><path d="M21 33c1.5 1.3 4.5 1.3 6 0"/></svg>
+      <span class="strip-label">Panzinha Feliz</span>
+      <span class="strip-desc">Lanches saudáveis<br>para miúdos felizes.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+    <a href="#rituais" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 20h16a2 2 0 0 1 2 2v4c0 6-4.5 10-10 10s-10-4-10-10v-4a2 2 0 0 1 2-2Z"/><path d="M30 22h2.5a4 4 0 0 1 0 8H30"/><path d="M20 12c-2 1-2 3 0 4M16 12c-2 1-2 3 0 4"/></svg>
+      <span class="strip-label">Wellness Rituais</span>
+      <span class="strip-desc">Chás, kombuchas<br>e momentos para ti.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+    <a href="#workshops" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 14c-3-3-9-3-12 0v18c3-3 9-3 12 0 3-3 9-3 12 0V14c-3-3-9-3-12 0Z"/><path d="M24 14v18"/></svg>
+      <span class="strip-label">Aprender</span>
+      <span class="strip-desc">Workshops e recursos<br>para o teu caminho.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+    <a href="#eventos" class="strip-item">
+      <svg class="strip-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="18" r="5"/><circle cx="31" cy="16" r="4"/><path d="M9 35c0-5 4-9 9-9s9 4 9 9"/><path d="M28 27c4 0 8 3 8 8"/></svg>
+      <span class="strip-label">Comunidade</span>
+      <span class="strip-desc">Juntos somos<br>mais fortes.</span>
+      <span class="strip-link">Saber mais →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ THREE FEATURE CARDS ============ -->
+<section class="features" id="cafe">
+  <div class="features-grid">
+
+    <article class="feature-card">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop" alt="Tigela colorida com vegetais frescos, abacate e grão" loading="lazy">
+        <span class="feature-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c0 6-5 7-5 13a5 5 0 0 0 10 0c0-6-5-7-5-13Z"/></svg>
+        </span>
+      </div>
+      <h3>Comida que nutre</h3>
+      <p>Ingredientes reais, locais e de época. Para te sentires bem todos os dias.</p>
+      <a href="#cafe" class="text-link">Ver o menu →</a>
+    </article>
+
+    <article class="feature-card" id="loja">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=1000&auto=format&fit=crop" alt="Prateleira com produtos naturais embalados, frascos e sacos em tons terra" loading="lazy">
+        <span class="feature-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.5 11A2 2 0 0 1 15.5 21h-7A2 2 0 0 1 6.5 19L5 8Z"/><path d="M8.5 8v-1a3.5 3.5 0 0 1 7 0v1"/></svg>
+        </span>
+      </div>
+      <h3>Escolhas conscientes</h3>
+      <p>Produtos cuidadosamente selecionados para um estilo de vida equilibrado.</p>
+      <a href="#loja" class="text-link">Explorar loja →</a>
+    </article>
+
+    <article class="feature-card" id="eventos">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=1000&auto=format&fit=crop" alt="Grupo de pessoas a conversar e sorrir à mesa de um café" loading="lazy">
+        <span class="feature-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="7" r="2.4"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M14.5 14a5 5 0 0 1 5.5 5"/></svg>
+        </span>
+      </div>
+      <h3>Comunidade & inspiração</h3>
+      <p>Eventos, workshops e encontros para aprender, partilhar e crescer juntos.</p>
+      <a href="#eventos" class="text-link">Ver eventos →</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ BANNER STRIP ============ -->
+<section class="banner" id="workshops">
+  <div class="banner-stars" aria-hidden="true"></div>
+  <div class="banner-inner">
+    <div class="banner-lead">
+      <svg class="banner-leaf" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34V10M20 10c0-5 4-8 9-8-1 6-4 9-9 8Z M20 18c0-5-4-8-9-8 1 6 4 9 9 8Z M20 26c5 1 9-2 10-7-6-1-9 2-10 7Z M20 26c-5 1-9-2-10-7 6-1 9 2 10 7Z"/></svg>
+      <p>Pequenas escolhas<br>criam grandes mudanças.</p>
+    </div>
+    <div class="banner-values">
+      <div class="banner-value">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="8" r="3.4"/><path d="M16 14c-5 0-7 4-7 9h14c0-5-2-9-7-9Z"/></svg>
+        <span>Corpo saudável</span>
+      </div>
+      <div class="banner-value">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6c5 0 8 4 8 8 0 3-1.5 5-3 6.5V24h-10v-3.5C9.5 19 8 17 8 14c0-4 3-8 8-8Z"/><path d="M13 27h6"/></svg>
+        <span>Mente clara</span>
+      </div>
+      <div class="banner-value">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="6"/><path d="M16 4v3M16 25v3M4 16h3M25 16h3M7.5 7.5l2 2M22.5 22.5l2 2M7.5 24.5l2-2M22.5 9.5l2-2"/></svg>
+        <span>Hábitos reais</span>
+      </div>
+      <div class="banner-value">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27S5 19.5 5 12.5C5 8.5 8 6 11.5 6c2 0 3.7 1 4.5 2.6C16.8 7 18.5 6 20.5 6 24 6 27 8.5 27 12.5 27 19.5 16 27 16 27Z"/></svg>
+        <span>Vida com propósito</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="newsletter" id="jornal">
+  <div class="newsletter-inner">
+    <div class="newsletter-copy">
+      <svg class="newsletter-icon" viewBox="0 0 40 30" aria-hidden="true"><rect x="2" y="3" width="36" height="24" rx="3"/><path d="M4 6l16 12L36 6"/></svg>
+      <div>
+        <h3>Junta-te ao caminho</h3>
+        <p>Recebe inspiração, novidades e eventos.</p>
+      </div>
+    </div>
+    <form class="newsletter-form" id="newsletterForm">
+      <label for="newsletterEmail" class="sr-only">O teu email</label>
+      <input type="email" id="newsletterEmail" placeholder="O teu email" required>
+      <button type="submit" class="btn btn-primary">Quero receber <span class="btn-spark">✦</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contacto">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <svg class="footer-logo" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" class="logo-ring"></circle>
+        <g class="logo-flower">
+          <path d="M60 60 L60 22 C68 30 68 46 60 60 Z" class="petal petal-1"></path>
+          <path d="M60 60 L93 41 C90 51 78 59 60 60 Z" class="petal petal-2"></path>
+          <path d="M60 60 L93 79 C84 84 68 82 60 60 Z" class="petal petal-3"></path>
+          <path d="M60 60 L60 98 C52 90 52 74 60 60 Z" class="petal petal-4"></path>
+          <path d="M60 60 L27 79 C30 69 42 61 60 60 Z" class="petal petal-5"></path>
+          <path d="M60 60 L27 41 C36 36 52 38 60 60 Z" class="petal petal-6"></path>
+        </g>
+      </svg>
+      <p>O The Wellness Hub é mais do que um café ou uma loja. É um espaço de bem-estar, aprendizagem e comunidade em Lisboa.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Links rápidos</h4>
+      <a href="#sobre-nos">Sobre nós</a>
+      <a href="#cafe">Café</a>
+      <a href="#loja">Loja</a>
+      <a href="#workshops">Workshops</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Visita-nos</h4>
+      <p>Mercado da Ajuda<br>Loja 12, 1300-018 Lisboa</p>
+      <p>Segunda a Sábado<br>8h00 – 20h00</p>
+      <a href="https://maps.google.com/?q=Mercado+da+Ajuda+Lisboa" class="text-link" target="_blank" rel="noopener">Ver no mapa →</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Segue-nos</h4>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v6h3v-6H16l.5-3h-3V9.5c0-.3.2-.5.5-.5Z"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 2-7 2-9a2 2 0 1 1 4 0c0 1.5-1 4-1 5.5a2 2 0 0 0 3.8 1"/></svg></a>
+        <a href="#" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-deco" aria-hidden="true">
+    <svg viewBox="0 0 160 200"><path d="M120 200V60M120 60c0-15 12-24 28-24-3 18-12 27-28 24Z M120 90c0-15-12-24-28-24 3 18 12 27 28 24Z M120 120c15 3 27-6 30-21-18-3-27 6-30 21Z M120 120c-15 3-27-6-30-21 18-3 27 6 30 21Z"/></svg>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© The Wellness Hub 2026 · Todos os direitos reservados</p>
+    <div class="footer-legal">
+      <a href="#">Política de privacidade</a>
+      <a href="#">Termos e condições</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
