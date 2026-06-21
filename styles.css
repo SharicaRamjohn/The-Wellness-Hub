@@ -165,18 +165,6 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 @supports not (background-clip: text){
   .hero h1 .accent{ color: var(--violet); }
 }
-.accent-wrap{ position:relative; display:inline-block; }
-.accent-spark{
-  position:absolute; color: var(--lavender); pointer-events:none;
-  animation: accent-twinkle 3s ease-in-out infinite;
-}
-.spark-a{ top:0.02em; left:-0.1em; font-size:0.28em; animation-delay:0s; }
-.spark-b{ top:0.55em; right:-0.06em; font-size:0.2em; animation-delay:1s; }
-.spark-c{ top:0.15em; right:18%; font-size:0.16em; animation-delay:2s; }
-@keyframes accent-twinkle{
-  0%,100%{ opacity:0.35; transform:scale(0.85); }
-  50%{ opacity:1; transform:scale(1.2); }
-}
 
 .hero-row{
   display:grid; grid-template-columns: 1.1fr 0.9fr;
