@@ -63,7 +63,7 @@ if (newsletterForm) {
     const button = newsletterForm.querySelector('button');
     const lang = getStoredLang();
     const originalLabel = button.textContent;
-    button.textContent = lang === 'pt' ? 'Obrigado! ✦' : 'Thank you! ✦';
+    button.textContent = lang === 'pt' ? 'Obrigado!' : 'Thank you!';
     button.disabled = true;
     setTimeout(() => {
       button.textContent = originalLabel;
@@ -74,36 +74,17 @@ if (newsletterForm) {
 }
 
 // ============================================================
-// ACTIVE NAV STATE
+// ACTIVE NAV STATE (desktop nav only — mobile nav closes on click)
 // ============================================================
-const navSections = document.querySelectorAll('.path-step[id], header[id]');
-const navLinks = document.querySelectorAll('.nav-left a, .nav-right a');
-const setActiveLink = () => {
-  let currentId = '';
-  const scrollPos = window.scrollY + 140;
-  navSections.forEach(section => { if (section.offsetTop <= scrollPos) currentId = section.id; });
-  navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`));
-};
-window.addEventListener('scroll', setActiveLink, { passive: true });
-
-// ============================================================
-// RAIL DOT TRACKING — lights up the dot for the step in view
-// ============================================================
-const railDots = document.querySelectorAll('.rail-dot');
-const steps = document.querySelectorAll('.path-step');
-
-const updateRail = () => {
-  let activeIndex = -1;
-  steps.forEach((step, i) => {
-    const rect = step.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
-      activeIndex = i;
-    }
-  });
-  railDots.forEach(dot => {
-    const stepIndex = parseInt(dot.getAttribute('data-step'), 10);
-    dot.classList.toggle('active', stepIndex === activeIndex);
-  });
-};
-window.addEventListener('scroll', updateRail, { passive: true });
-updateRail();
+const navSections = document.querySelectorAll('section[id], header[id]');
+const navLinks = document.querySelectorAll('.nav-main a');
+if (navLinks.length) {
+  const setActiveLink = () => {
+    let currentId = '';
+    const scrollPos = window.scrollY + 140;
+    navSections.forEach(section => { if (section.offsetTop <= scrollPos) currentId = section.id; });
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`));
+  };
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+  setActiveLink();
+}
