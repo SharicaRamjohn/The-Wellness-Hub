@@ -1,90 +1,306 @@
-// ============================================================
-// LANGUAGE TOGGLE
-// ============================================================
-const LANG_KEY = 'twh-lang';
+/* ============================================================
+   THE WELLNESS HUB — v5
+   Structural bet: mobile-first, full-bleed photo "moments" in
+   sequence. Type sits directly on imagery. No card grids, no
+   stat rows, no persistent rail. Built mobile-up, enhanced for
+   desktop, never collapsed-down.
+   ============================================================ */
 
-function getStoredLang() {
-  try { return localStorage.getItem(LANG_KEY) || 'pt'; }
-  catch (e) { return 'pt'; }
-}
-function setStoredLang(lang) {
-  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
-}
-function applyLanguage(lang) {
-  document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
-  document.querySelectorAll(`[data-${lang}]`).forEach(el => {
-    const value = el.getAttribute(`data-${lang}`);
-    if (value !== null) el.textContent = value;
-  });
-  document.querySelectorAll(`[data-${lang}-html]`).forEach(el => {
-    const value = el.getAttribute(`data-${lang}-html`);
-    if (value !== null) el.innerHTML = value;
-  });
-  document.querySelectorAll(`[data-${lang}-placeholder]`).forEach(el => {
-    const value = el.getAttribute(`data-${lang}-placeholder`);
-    if (value !== null) el.setAttribute('placeholder', value);
-  });
-  document.querySelectorAll('.lang-toggle button, .mobile-lang button').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-  setStoredLang(lang);
-}
-document.querySelectorAll('.lang-toggle button, .mobile-lang button').forEach(btn => {
-  btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang')));
-});
-applyLanguage(getStoredLang());
+:root{
+  --navy:        #171683;
+  --indigo:      #3844a1;
+  --violet:      #5b24c4;
+  --violet-2:    #6724c8;
+  --lavender:    #a966ea;
+  --lavender-soft: #d8c3f5;
 
-// ============================================================
-// MOBILE NAV
-// ============================================================
-const navToggle = document.getElementById('navToggle');
-const mobileNav = document.getElementById('mobileNav');
-if (navToggle && mobileNav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
+  --ink:        #1c1730;
+  --muted:      #6f6a80;
+  --faint:      #a8a3b5;
+  --parchment:  #faf8f4;
+  --paper:      #ffffff;
+  --line:       #e8e2d6;
+
+  --galaxy-texture: url('assets/galaxy-texture.png');
+  --galaxy-texture-wide: url('assets/galaxy-texture-wide.png');
+  --galaxy-texture-text: url('assets/galaxy-texture-text.png');
+
+  --radius-md: 14px;
+  --radius-sm: 8px;
+
+  --shadow-soft: 0 16px 44px -16px rgba(28, 23, 48, 0.18);
+  --shadow-card: 0 8px 26px -10px rgba(28, 23, 48, 0.12);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-// ============================================================
-// NEWSLETTER FORM
-// ============================================================
-const newsletterForm = document.getElementById('newsletterForm');
-if (newsletterForm) {
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const emailInput = document.getElementById('newsletterEmail');
-    const button = newsletterForm.querySelector('button');
-    const lang = getStoredLang();
-    const originalLabel = button.textContent;
-    button.textContent = lang === 'pt' ? 'Obrigado!' : 'Thank you!';
-    button.disabled = true;
-    setTimeout(() => {
-      button.textContent = originalLabel;
-      button.disabled = false;
-      emailInput.value = '';
-    }, 2500);
-  });
+*{margin:0; padding:0; box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--parchment);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; border:none; background:none;}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);}
+:focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:4px;}
+
+/* ============== buttons ============== */
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  font-weight:600; font-size:0.9rem; letter-spacing:0.02em;
+  padding:14px 26px; border-radius:999px;
+  transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
+}
+.btn-primary{
+  background-image: var(--galaxy-texture);
+  background-size: 220% 220%; background-position: 30% 30%;
+  background-color: var(--navy);
+  color:#fff; box-shadow: var(--shadow-soft);
+}
+.btn-primary:hover{ transform: translateY(-2px); background-position: 45% 45%; }
+.btn-light{ background: #fff; color: var(--violet); }
+.btn-light:hover{ transform: translateY(-2px); }
+.btn-secondary{ background: var(--paper); color: var(--violet); border:1.5px solid var(--lavender-soft); }
+.btn-secondary:hover{ border-color: var(--violet); }
+.btn-small{ padding:10px 20px; font-size:0.8rem; }
+.btn-icon{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; }
+
+.text-link{ font-weight:600; font-size:0.84rem; letter-spacing:0.03em; color: var(--violet); position:relative; }
+.text-link::after{ content:""; position:absolute; left:0; bottom:-3px; width:0; height:1px; background: var(--lavender); transition: width 0.3s ease; }
+.text-link:hover::after{ width:100%; }
+
+/* ============== header ============== */
+.site-header{
+  position: sticky; top:0; z-index:50;
+  background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner{
+  max-width:1320px; margin-inline:auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 20px; position:relative;
+}
+.nav-main{ display:none; align-items:center; gap:24px; font-size:0.76rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+.nav-main a{ color: var(--ink); opacity:0.78; transition: opacity 0.2s, color 0.2s; }
+.nav-main a:hover{ opacity:1; color:var(--violet); }
+.header-actions{ display:none; align-items:center; gap:14px; }
+.lang-toggle{ display:flex; align-items:center; gap:2px; font-size:0.72rem; font-weight:700; border:1px solid var(--line); border-radius:999px; padding:4px; }
+.lang-toggle button{ padding:6px 10px; border-radius:999px; color: var(--muted); transition: background 0.2s, color 0.2s; }
+.lang-toggle button.active{ background: var(--violet); color:#fff; }
+.logo{ flex-shrink:0; }
+.logo-mark{ width:52px; height:52px; object-fit:contain; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); }
+.logo:hover .logo-mark{ transform: scale(1.05) rotate(6deg); }
+.nav-toggle{ display:flex; flex-direction:column; gap:5px; padding:8px; }
+.nav-toggle span{ width:22px; height:2px; background:var(--ink); border-radius:2px; }
+.mobile-nav{ display:flex; flex-direction:column; gap:4px; max-height:0; overflow:hidden; background: var(--paper); border-top: 1px solid var(--line); transition: max-height 0.35s ease; }
+.mobile-nav.open{ max-height:560px; }
+.mobile-nav a{ padding:14px 20px; font-weight:600; font-size:0.95rem; border-bottom:1px solid var(--line); }
+.mobile-nav .btn{ margin:16px 20px; justify-content:center; border-bottom:none; }
+.mobile-lang{ display:flex; gap:10px; padding:14px 20px; }
+.mobile-lang button{ flex:1; padding:10px; border-radius:999px; border:1px solid var(--line); font-weight:700; font-size:0.82rem; color:var(--muted); }
+.mobile-lang button.active{ background: var(--violet); color:#fff; border-color:transparent; }
+
+/* ============================================================
+   FRAME — the core building block.
+   Full-bleed photo, dark veil for legibility, type sits on top.
+   This replaces the old card/grid system across the page.
+   ============================================================ */
+.frame{
+  position:relative;
+  width:100%;
+  min-height: 86vh;
+  display:flex;
+  overflow:hidden;
+  background: var(--ink);
+}
+.frame-img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover;
+}
+.frame-veil{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(23,22,55,0.05) 0%, rgba(23,22,55,0.30) 55%, rgba(23,22,55,0.86) 100%);
+}
+.frame-veil.veil-strong{
+  background: linear-gradient(180deg, rgba(23,22,55,0.25) 0%, rgba(23,22,55,0.35) 45%, rgba(23,22,55,0.92) 100%);
+}
+.frame-content{
+  position:relative; z-index:1;
+  width:100%;
+  padding: 28px 20px 48px;
+  display:flex; flex-direction:column;
+}
+.frame-content-bottom{ margin-top:auto; }
+
+.frame-kicker{
+  font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+  color: var(--lavender-soft); margin-bottom:18px;
+}
+.frame-kicker-dark{ color: var(--violet); }
+
+.frame-hero h1{
+  font-family: var(--font-display); font-weight:300;
+  font-size: clamp(2.6rem, 11vw, 4.6rem);
+  line-height:1.0; letter-spacing:-0.01em; color:#fff;
+  max-width:560px;
+}
+.frame h1 .accent, .frame-hero h1 .accent{
+  font-family:"Allura", cursive; font-weight:400; font-style:normal;
+  font-size:1.25em; padding:0 0.06em;
+  background-image: var(--galaxy-texture-text);
+  background-size: 130% 220%;
+  background-position: 35% 40%;
+  -webkit-background-clip: text; background-clip: text;
+  color: var(--lavender-soft);
+  -webkit-text-fill-color: transparent;
+}
+@supports not (background-clip: text){
+  .frame h1 .accent{ color: var(--lavender-soft); }
+}
+.frame-hero p{
+  font-size:1rem; color: rgba(255,255,255,0.86); margin:14px 0 24px; max-width:340px;
+}
+.frame-hero .btn{ align-self:flex-start; }
+
+.frame-tall h2{
+  font-family: var(--font-display); font-weight:300;
+  font-size: clamp(1.7rem, 7vw, 2.6rem); line-height:1.12; color:#fff;
+  max-width:460px;
+}
+.frame-copy{
+  font-size:0.96rem; color: rgba(255,255,255,0.82); line-height:1.65;
+  max-width:360px; margin-top:14px;
 }
 
-// ============================================================
-// ACTIVE NAV STATE (desktop nav only — mobile nav closes on click)
-// ============================================================
-const navSections = document.querySelectorAll('section[id], header[id]');
-const navLinks = document.querySelectorAll('.nav-main a');
-if (navLinks.length) {
-  const setActiveLink = () => {
-    let currentId = '';
-    const scrollPos = window.scrollY + 140;
-    navSections.forEach(section => { if (section.offsetTop <= scrollPos) currentId = section.id; });
-    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`));
-  };
-  window.addEventListener('scroll', setActiveLink, { passive: true });
-  setActiveLink();
+.pillar-row{
+  display:flex; flex-wrap:wrap; gap:16px 20px; margin-top:22px; list-style:none;
+}
+.pillar-row li{
+  font-size:0.78rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+  color:#fff;
+}
+
+/* ============================================================
+   CAFÉ — three thin photo strips, not boxed cards
+   ============================================================ */
+.cafe-block{ background: var(--parchment); padding: 56px 0 40px; }
+.cafe-head{ padding: 0 20px 24px; max-width:1320px; margin-inline:auto; }
+.cafe-head h2{ font-family: var(--font-display); font-weight:300; font-size: clamp(1.7rem, 6vw, 2.4rem); color: var(--ink); max-width:420px; }
+.cafe-strip{ display:flex; flex-direction:column; gap:2px; }
+.cafe-frame{ position:relative; display:block; aspect-ratio: 16/10; overflow:hidden; }
+.cafe-frame img{ width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+.cafe-frame:hover img{ transform: scale(1.04); }
+.cafe-label{
+  position:absolute; left:20px; bottom:16px;
+  font-family: var(--font-display); font-weight:500; font-size:1.1rem; color:#fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.cafe-foot{ padding: 24px 20px 0; max-width:1320px; margin-inline:auto; }
+
+/* ============================================================
+   VISIT — practical info, real copy, smaller map
+   ============================================================ */
+.visit-block{ background: var(--paper); padding: 64px 0; }
+.visit-inner{ max-width:1320px; margin-inline:auto; padding-inline:20px; display:flex; flex-direction:column; gap:36px; }
+.visit-copy h2{ font-family: var(--font-display); font-weight:300; font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--ink); margin:14px 0 28px; }
+.visit-rows{ display:flex; flex-direction:column; }
+.visit-row{ display:flex; gap:16px; padding:18px 0; border-top:1px solid var(--line); }
+.visit-row:first-child{ border-top:none; }
+.visit-row svg{ width:20px; height:20px; flex-shrink:0; fill:none; stroke:var(--violet); stroke-width:1.6; margin-top:2px; }
+.visit-row h4{ font-size:0.9rem; font-weight:600; margin-bottom:4px; }
+.visit-row p{ font-size:0.88rem; color:var(--muted); line-height:1.6; }
+.visit-map{ border-radius: var(--radius-md); overflow:hidden; aspect-ratio: 16/10; box-shadow: var(--shadow-card); border:1px solid var(--line); }
+.visit-map iframe{ width:100%; height:100%; border:0; }
+
+/* ============================================================
+   COMMUNITY — texture banner
+   ============================================================ */
+.community-wrap{ padding: 0 20px 56px; max-width:1320px; margin-inline:auto; }
+.community{
+  position:relative; border-radius: var(--radius-md);
+  background-image: var(--galaxy-texture-wide); background-size: cover; background-position: center;
+  background-color: var(--navy); overflow:hidden; padding: 44px 26px;
+  display:flex; flex-direction:column; gap:24px;
+}
+.community-copy{ position:relative; z-index:1; }
+.community-eyebrow{ font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color: rgba(255,255,255,0.75); margin-bottom:12px; display:block; }
+.community h3{ font-family: var(--font-display); font-weight:300; font-size: clamp(1.5rem,5vw,2rem); color:#fff; line-height:1.2; margin-bottom:10px; }
+.community p{ font-size:0.92rem; color: rgba(255,255,255,0.82); line-height:1.6; }
+.community-form{ position:relative; z-index:1; display:flex; flex-direction:column; gap:12px; }
+.community-form input{ font-size:0.92rem; padding:14px 20px; border-radius:999px; border:none; width:100%; }
+.community-form input:focus{ outline:2px solid #fff; outline-offset:2px; }
+.community-form .btn{ background:#fff; color: var(--violet); background-image:none; justify-content:center; }
+.community-form .btn:hover{ transform:translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{ background: var(--paper); padding-top: 48px; border-top:1px solid var(--line); }
+.footer-inner{ max-width:1320px; margin-inline:auto; padding-inline:20px; display:grid; grid-template-columns: 1fr; gap:32px; }
+.footer-brand{ display:flex; flex-direction:column; gap:16px; max-width:340px; }
+.footer-logo{ width:46px; height:46px; object-fit:contain; }
+.footer-brand p{ font-size:0.86rem; color:var(--muted); line-height:1.6; }
+.footer-col h4{ font-family: var(--font-display); font-weight:600; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink); margin-bottom:14px; }
+.footer-col a{ display:block; font-size:0.88rem; color:var(--muted); padding:5px 0; transition:color 0.2s; }
+.footer-col a:hover{ color:var(--violet); }
+.footer-col p{ font-size:0.88rem; color:var(--muted); line-height:1.6; margin-bottom:12px; }
+.social-row{ display:flex; gap:12px; }
+.social-row a{ width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transition: background 0.25s, border-color 0.25s; }
+.social-row a:hover{ background: var(--violet); border-color:transparent; }
+.social-row svg{ width:15px; height:15px; fill:none; stroke:var(--ink); stroke-width:1.5; transition:stroke 0.2s; }
+.social-row a:hover svg{ stroke:#fff; }
+.footer-b2b{ font-size:0.78rem; color:var(--muted); margin-top:18px; }
+.footer-b2b a{ color:var(--violet); font-weight:600; }
+.footer-bottom{ margin-top:40px; padding:18px 20px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:12px; font-size:0.76rem; color:var(--muted); }
+.footer-legal{ display:flex; gap:24px; }
+.footer-legal a:hover{ color:var(--violet); }
+
+/* ============================================================
+   RESPONSIVE — enhancements layered ON TOP of mobile base.
+   Mobile styles above are the foundation, not a fallback.
+   ============================================================ */
+@media (min-width: 700px){
+  .frame-content{ padding: 40px 40px 64px; }
+  .cafe-head, .cafe-foot{ padding-inline:40px; }
+  .visit-inner{ padding-inline:40px; flex-direction:row; gap:56px; }
+  .visit-copy{ flex:1.1; }
+  .visit-map{ flex:0.9; align-self:flex-start; }
+  .community-wrap{ padding-inline:40px; }
+  .community{ flex-direction:row; align-items:center; justify-content:space-between; padding:56px 48px; }
+  .community-copy{ max-width:440px; }
+  .community-form{ flex-direction:row; }
+  .community-form input{ width:auto; min-width:220px; }
+  .footer-inner{ padding-inline:40px; grid-template-columns: 1.6fr 1fr 1fr 1fr; }
+  .footer-bottom{ padding-inline:40px; flex-direction:row; align-items:center; justify-content:space-between; }
+}
+
+@media (min-width: 880px){
+  .header-inner{ padding: 14px 32px; }
+  .nav-main{ display:flex; }
+  .header-actions{ display:flex; }
+  .nav-toggle{ display:none; }
+  .logo-mark{ width:64px; height:64px; }
+  .cafe-strip{ flex-direction:row; }
+  .cafe-frame{ flex:1; aspect-ratio: 4/5; }
+}
+
+@media (min-width: 1080px){
+  .frame{ min-height: 92vh; }
+  .frame-content{ max-width:1320px; margin-inline:auto; width:100%; padding:56px 32px 80px; }
+  .cafe-head, .cafe-foot{ padding-inline:32px; }
+  .visit-inner{ padding-inline:32px; }
+  .community-wrap{ padding-inline:32px; }
+  .footer-inner{ padding-inline:32px; }
+  .footer-bottom{ padding-inline:32px; }
 }
