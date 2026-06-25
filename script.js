@@ -1,4 +1,32 @@
 // ============================================================
+// SPLASH SCREEN — logo reveal, once per browser session
+// ============================================================
+const SPLASH_KEY = 'twh-splash-seen';
+const splash = document.getElementById('splash');
+if (splash) {
+  let alreadySeen = false;
+  try { alreadySeen = sessionStorage.getItem(SPLASH_KEY) === '1'; } catch (e) {}
+
+  if (alreadySeen) {
+    splash.remove();
+  } else {
+    try { sessionStorage.setItem(SPLASH_KEY, '1'); } catch (e) {}
+    document.body.style.overflow = 'hidden';
+    const releaseScroll = () => { document.body.style.overflow = ''; };
+    // Remove from the DOM once the fade-out animation completes,
+    // so it can't block clicks or linger for screen readers.
+    splash.addEventListener('animationend', (e) => {
+      if (e.target === splash) { splash.remove(); releaseScroll(); }
+    });
+    // Fallback in case animationend doesn't fire for any reason.
+    setTimeout(() => {
+      if (splash.isConnected) splash.remove();
+      releaseScroll();
+    }, 3200);
+  }
+}
+
+// ============================================================
 // LANGUAGE TOGGLE
 // ============================================================
 const LANG_KEY = 'twh-lang';
