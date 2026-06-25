@@ -22,7 +22,7 @@ if (splash) {
     setTimeout(() => {
       if (splash.isConnected) splash.remove();
       releaseScroll();
-    }, 3200);
+    }, 3600);
   }
 }
 
