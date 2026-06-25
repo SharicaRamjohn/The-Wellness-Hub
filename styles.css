@@ -104,48 +104,78 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 
 /* ============================================================
    SPLASH — full-screen "zero to hero" logo reveal.
-   Plays once per visit (sessionStorage-gated in script.js),
-   then fades out to reveal the page underneath. The moment
-   lives on its own full-viewport stage, not crammed into the
-   small header logo — that's what makes it actually register.
+   Plays once per visit (sessionStorage-gated in script.js).
+   Three layers, staged in sequence:
+     1. backdrop — soft navy/violet/lavender bloom, breathing
+     2. halo     — glow blooms first, logo's "presence" arrives early
+     3. logo     — arrives a beat after the halo, settles, holds
+   Then the whole stage dissolves to reveal the page underneath.
    ============================================================ */
 .splash{
   position:fixed; inset:0; z-index:999;
-  background: var(--parchment);
+  overflow:hidden;
   display:flex; align-items:center; justify-content:center;
-  animation: splashFadeOut 0.6s ease 2.0s forwards;
+  background: var(--parchment);
+  animation: splashFadeOut 0.7s ease 2.3s forwards;
 }
-.splash.skip{ display:none; }
-.splash-stage{ position:relative; width:min(60vw, 260px); aspect-ratio:1/1; }
+.splash-backdrop{
+  position:absolute; inset:-10%;
+  background: radial-gradient(circle at 50% 50%,
+    var(--lavender-soft) 0%, var(--lavender) 18%, var(--violet) 42%, var(--navy) 78%, var(--parchment) 100%);
+  opacity:0;
+  animation: splashBackdropIn 1.8s ease both;
+  filter: blur(2px);
+}
+@keyframes splashBackdropIn{
+  0%   { opacity:0; transform: scale(0.7); }
+  45%  { opacity:0.5; }
+  100% { opacity:0.42; transform: scale(1); }
+}
+.splash-stage{ position:relative; width:min(58vw, 240px); aspect-ratio:1/1; z-index:1; }
+.splash-halo{
+  position:absolute; inset:-30%;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, var(--lavender-soft) 35%, transparent 72%);
+  opacity:0;
+  animation: splashHaloIn 1.6s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes splashHaloIn{
+  0%   { opacity:0; transform: scale(0.2); }
+  50%  { opacity:0.9; transform: scale(1.15); }
+  100% { opacity:0.55; transform: scale(1); }
+}
 .splash-logo{
-  width:100%; height:100%; object-fit:contain;
-  animation: splashLogoIn 1.4s cubic-bezier(.16,.9,.2,1) both;
+  position:relative; width:100%; height:100%; object-fit:contain;
+  opacity:0;
+  animation: splashLogoIn 1.3s cubic-bezier(.16,.9,.2,1) 0.35s both;
 }
 @keyframes splashLogoIn{
-  0%   { transform: scale(0.35) rotate(-50deg); opacity:0; }
-  60%  { transform: scale(1.08) rotate(10deg); opacity:1; }
-  80%  { transform: scale(0.97) rotate(-2deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0%   { transform: scale(0.3) rotate(-55deg); opacity:0; }
+  62%  { transform: scale(1.1) rotate(9deg); opacity:1; }
+  82%  { transform: scale(0.96) rotate(-3deg); }
+  100% { transform: scale(1) rotate(0deg); opacity:1; }
 }
 @keyframes splashFadeOut{
   0%   { opacity:1; visibility:visible; }
-  99%  { opacity:0; visibility:visible; }
+  85%  { opacity:0; visibility:visible; }
   100% { opacity:0; visibility:hidden; }
 }
 .splash-sparkle{
-  position:absolute; color: var(--violet); opacity:0; pointer-events:none;
-  font-size:clamp(20px, 4vw, 32px);
-  animation: splashSparkle 1.4s ease-out both;
+  position:absolute; z-index:2; color:#fff; opacity:0; pointer-events:none;
+  text-shadow: 0 0 8px rgba(91,36,196,0.5);
+  animation: splashSparkle 2s ease-out both;
 }
-.splash-sparkle-1{ top:2%; left:8%; animation-delay:0.55s; }
-.splash-sparkle-2{ top:10%; right:0%; font-size:clamp(14px,2.6vw,22px); animation-delay:0.72s; }
-.splash-sparkle-3{ bottom:6%; left:0%; font-size:clamp(16px,3vw,26px); animation-delay:0.85s; }
-.splash-sparkle-4{ bottom:0%; right:14%; font-size:clamp(12px,2.2vw,18px); animation-delay:0.95s; }
+.splash-sparkle-1{ top:6%;  left:12%; font-size:clamp(16px,3vw,24px); animation-delay:0.7s; }
+.splash-sparkle-2{ top:18%; right:4%; font-size:clamp(10px,1.8vw,16px); animation-delay:0.95s; }
+.splash-sparkle-3{ bottom:10%; left:2%; font-size:clamp(14px,2.6vw,20px); animation-delay:1.15s; }
+.splash-sparkle-4{ bottom:2%; right:18%; font-size:clamp(9px,1.6vw,14px); animation-delay:1.3s; }
+.splash-sparkle-5{ top:48%; left:-4%; font-size:clamp(8px,1.4vw,12px); animation-delay:1.45s; }
+.splash-sparkle-6{ top:42%; right:-6%; font-size:clamp(11px,2vw,17px); animation-delay:1.05s; }
 @keyframes splashSparkle{
-  0%   { opacity:0; transform: scale(0.2) rotate(0deg); }
-  35%  { opacity:1; transform: scale(1.15) rotate(50deg); }
-  70%  { opacity:1; transform: scale(0.95) rotate(80deg); }
-  100% { opacity:0; transform: scale(0.7) rotate(110deg); }
+  0%   { opacity:0; transform: scale(0.15) translate(0,0) rotate(0deg); }
+  30%  { opacity:1; transform: scale(1.1) translate(0,-2px) rotate(45deg); }
+  65%  { opacity:0.85; transform: scale(0.9) translate(6px,-10px) rotate(85deg); }
+  100% { opacity:0; transform: scale(0.5) translate(14px,-22px) rotate(130deg); }
 }
 @media (prefers-reduced-motion: reduce){
   .splash{ display:none; }
