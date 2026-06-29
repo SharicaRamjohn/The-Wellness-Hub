@@ -253,6 +253,32 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 }
 .frame-hero .btn{ align-self:flex-start; }
 
+/* ---- light hero variant: text sits in the photo's own negative
+   space (a bright wall), no dark veil needed, dark ink-colored type ---- */
+.frame-hero-light .frame-img{
+  object-position: 38% 25%;
+}
+.frame-content-hero-pos{
+  justify-content:flex-start;
+  padding-top: 64px;
+  align-items:flex-start;
+}
+.hero-h1-dark{
+  font-family: var(--font-display); font-weight:300;
+  font-size: clamp(2.3rem, 8.5vw, 3.8rem);
+  line-height:1.04; letter-spacing:-0.01em; color: var(--ink);
+  max-width:480px;
+  text-shadow: 0 1px 14px rgba(250,248,244,0.5);
+}
+.hero-sub-dark{
+  font-size:1rem; color: var(--muted); margin:14px 0 24px; max-width:300px;
+}
+.frame-hero-light h1 .accent{
+  background-image:none;
+  color: var(--violet);
+  -webkit-text-fill-color: var(--violet);
+}
+
 .frame-tall h2{
   font-family: var(--font-display); font-weight:300;
   font-size: clamp(1.7rem, 7vw, 2.6rem); line-height:1.12; color:#fff;
@@ -378,6 +404,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 @media (min-width: 1080px){
   .frame{ min-height: 92vh; }
   .frame-content{ max-width:1320px; margin-inline:auto; width:100%; padding:56px 32px 80px; }
+  .frame-content-hero-pos{ padding-top:0; justify-content:center; }
   .cafe-head, .cafe-foot{ padding-inline:32px; }
   .visit-inner{ padding-inline:32px; }
   .community-wrap{ padding-inline:32px; }
