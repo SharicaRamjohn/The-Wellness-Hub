@@ -204,6 +204,9 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
   overflow:hidden;
   background: var(--ink);
 }
+.frame picture{
+  display:contents;
+}
 .frame-img{
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover;
@@ -254,24 +257,29 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 .frame-hero .btn{ align-self:flex-start; }
 
 /* ---- light hero variant: text sits in the photo's own negative
-   space (a bright wall), no dark veil needed, dark ink-colored type ---- */
+   space (a bright wall), no dark veil needed, dark ink-colored type.
+   Text zone is deliberately conservative — kept to the top band of
+   the frame and a narrower max-width — so it stays clear of the
+   shelf/vase across the full range of real phone aspect ratios,
+   verified against actual object-fit:cover crop simulations rather
+   than assumed from the source image alone. ---- */
 .frame-hero-light .frame-img{
-  object-position: 38% 25%;
+  object-position: 50% 0%;
 }
 .frame-content-hero-pos{
   justify-content:flex-start;
-  padding-top: 64px;
+  padding-top: 8%;
   align-items:flex-start;
 }
 .hero-h1-dark{
   font-family: var(--font-display); font-weight:300;
-  font-size: clamp(2.3rem, 8.5vw, 3.8rem);
-  line-height:1.04; letter-spacing:-0.01em; color: var(--ink);
-  max-width:480px;
-  text-shadow: 0 1px 14px rgba(250,248,244,0.5);
+  font-size: clamp(2rem, 7.5vw, 3.2rem);
+  line-height:1.06; letter-spacing:-0.01em; color: var(--ink);
+  max-width:62%;
+  text-shadow: 0 1px 14px rgba(250,248,244,0.6);
 }
 .hero-sub-dark{
-  font-size:1rem; color: var(--muted); margin:14px 0 24px; max-width:300px;
+  font-size:0.96rem; color: var(--muted); margin:12px 0 22px; max-width:55%;
 }
 .frame-hero-light h1 .accent{
   background-image:none;
@@ -377,6 +385,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
    Mobile styles above are the foundation, not a fallback.
    ============================================================ */
 @media (min-width: 700px){
+  .frame-hero-light .frame-img{ object-position: 38% 25%; }
+  .frame-content-hero-pos{ padding-top:0; justify-content:center; max-width:1320px; }
+  .hero-h1-dark{ max-width:480px; }
+  .hero-sub-dark{ max-width:300px; }
   .frame-content{ padding: 40px 40px 64px; }
   .cafe-head, .cafe-foot{ padding-inline:40px; }
   .visit-inner{ padding-inline:40px; flex-direction:row; gap:56px; }
@@ -404,7 +416,6 @@ button{font-family:inherit; cursor:pointer; border:none; background:none;}
 @media (min-width: 1080px){
   .frame{ min-height: 92vh; }
   .frame-content{ max-width:1320px; margin-inline:auto; width:100%; padding:56px 32px 80px; }
-  .frame-content-hero-pos{ padding-top:0; justify-content:center; }
   .cafe-head, .cafe-foot{ padding-inline:32px; }
   .visit-inner{ padding-inline:32px; }
   .community-wrap{ padding-inline:32px; }
