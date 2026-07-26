@@ -47,8 +47,13 @@
 
 <main>
 
-<!-- ============ HERO (unchanged) ============ -->
+<!-- ============ HERO (text overlaid on image) ============ -->
 <section class="hero">
+  <picture class="hero-media">
+    <source media="(min-width: 734px)" srcset="assets/hero-twh.jpg">
+    <img src="assets/hero-twh-v2.jpg" alt="Interior do The Wellness Hub, com prateleiras de chá, óleos e produtos biológicos" loading="eager">
+  </picture>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container hero-copy">
     <p class="eyebrow reveal" data-pt="Mercado da Ajuda · Lisboa" data-en="Mercado da Ajuda · Lisbon">Mercado da Ajuda · Lisboa</p>
     <h1 class="display reveal" data-pt="The Wellness Hub" data-en="The Wellness Hub">The Wellness Hub</h1>
@@ -57,12 +62,6 @@
       <a href="#superalimentos" class="chevron-link" data-pt="Conhece o Hub" data-en="Discover the Hub">Conhece o Hub</a>
       <a href="#visita" class="chevron-link" data-pt="Visita-nos" data-en="Visit us">Visita-nos</a>
     </p>
-  </div>
-  <div class="media media-hero reveal-media">
-    <picture>
-      <source media="(min-width: 734px)" srcset="assets/hero-twh.jpg">
-      <img src="assets/hero-twh-v2.jpg" alt="Interior do The Wellness Hub, com prateleiras de chá, óleos e produtos biológicos" loading="eager">
-    </picture>
   </div>
 </section>
 
