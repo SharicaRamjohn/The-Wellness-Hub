@@ -140,16 +140,33 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
 /* ============================================================
    HERO
    ============================================================ */
-.hero{ background:var(--offwhite); padding-top:44px; text-align:center; }
-.hero-copy{ display:flex; flex-direction:column; align-items:center; }
+.hero{
+  position:relative; overflow:hidden;
+  min-height:86vh; display:flex; align-items:flex-start; justify-content:center;
+  text-align:center; background:var(--offwhite);
+}
+.hero-media{ position:absolute; inset:0; display:block; }
+.hero-media img{ width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
+.hero-scrim{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(251,251,253,0.95) 0%, rgba(251,251,253,0.82) 18%,
+    rgba(251,251,253,0.5) 36%, rgba(251,251,253,0.12) 56%, rgba(251,251,253,0) 78%);
+}
+.hero-copy{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center;
+  padding-top:13vh;
+}
+.hero-copy .eyebrow,
+.hero .display,
+.hero-sub{ text-shadow:0 1px 22px rgba(251,251,253,0.7); }
 .hero .display{ font-size:clamp(2.7rem, 12vw, 5rem); }
 .hero-sub{
   font-weight:500; font-size:clamp(1.3rem, 5.2vw, 1.9rem); letter-spacing:-0.015em;
   color:var(--ink); margin-top:10px;
 }
 .hero .link-row{ justify-content:center; margin-top:20px; }
-.media-hero{ margin-top:40px; }
-.media-hero img{ width:100%; height:auto; max-height:76vh; object-fit:cover; }
 
 /* ============================================================
    STORY sections
@@ -272,7 +289,9 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
 }
 
 @media (min-width:1068px){
-  .hero{ padding-top:60px; }
+  .hero{ min-height:92vh; }
+  .hero-copy{ padding-top:15vh; }
+  .hero-media img{ object-position:45% 32%; }
   .hero .display{ font-size:clamp(4rem, 7vw, 5.6rem); }
   .story{ padding-top:150px; }
   .cosmic{ margin-top:150px; padding:160px 0; }
