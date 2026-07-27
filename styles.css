@@ -107,35 +107,52 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
 .reveal-media.in{ opacity:1; transform:none; }
 
 /* ============================================================
-   NAV
+   FLOATING CONTROLS — no bar; hamburger + lang float over page
    ============================================================ */
-.nav{
-  position:sticky; top:0; z-index:100;
-  background: rgba(251,251,253,0.82);
-  backdrop-filter: saturate(180%) blur(18px);
-  -webkit-backdrop-filter: saturate(180%) blur(18px);
-  border-bottom:1px solid rgba(0,0,0,0.08);
+/* frosted chip base so controls read over light photos AND the black beat */
+.lang-float{ position:fixed; top:14px; left:14px; z-index:120; }
+.lang-toggle{
+  display:flex; gap:1px; font-size:0.68rem; font-weight:700;
+  border-radius:980px; padding:3px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(0,0,0,0.06);
+  backdrop-filter:saturate(180%) blur(12px); -webkit-backdrop-filter:saturate(180%) blur(12px);
+  box-shadow:0 4px 16px -8px rgba(20,17,58,0.35);
 }
-.nav-inner{
-  max-width:1024px; margin-inline:auto; padding:0 var(--pad-x);
-  height:52px; display:flex; align-items:center; justify-content:space-between;
-}
-.nav-logo{ display:flex; align-items:center; gap:9px; }
-.nav-mark{ width:30px; height:30px; object-fit:contain; }
-.nav-word{ font-weight:600; font-size:1.02rem; letter-spacing:-0.02em; color:var(--ink); }
-.nav-links{ display:none; gap:28px; font-size:0.82rem; font-weight:400; color:var(--ink); }
-.nav-links a{ opacity:0.85; transition:opacity 0.2s; }
-.nav-links a:hover{ opacity:1; color:var(--violet); }
-.nav-right{ display:flex; align-items:center; gap:12px; }
-.lang-toggle{ display:flex; gap:1px; font-size:0.66rem; font-weight:600; border:1px solid var(--hair); border-radius:980px; padding:2px; }
-.lang-toggle button{ padding:4px 8px; border-radius:980px; color:var(--ink-2); transition:background 0.2s,color 0.2s; }
+.lang-toggle button{ padding:5px 10px; border-radius:980px; color:var(--ink-2); transition:background 0.2s,color 0.2s; }
 .lang-toggle button.active{ background:var(--violet); color:#fff; }
-.nav-burger{ display:flex; flex-direction:column; gap:5px; padding:6px 2px; }
-.nav-burger span{ width:20px; height:1.5px; background:var(--ink); border-radius:2px; }
 
-.nav-drawer{ display:flex; flex-direction:column; max-height:0; overflow:hidden; background:var(--white); border-bottom:1px solid var(--hair); transition:max-height 0.4s var(--ease); }
-.nav-drawer.open{ max-height:320px; }
-.nav-drawer a{ padding:15px var(--pad-x); font-size:1.05rem; border-top:1px solid #f0f0f2; }
+.menu-btn{
+  position:fixed; top:14px; right:14px; z-index:130;
+  width:46px; height:46px; border-radius:50%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(0,0,0,0.06);
+  backdrop-filter:saturate(180%) blur(12px); -webkit-backdrop-filter:saturate(180%) blur(12px);
+  box-shadow:0 4px 16px -8px rgba(20,17,58,0.35);
+  transition:background 0.3s var(--ease);
+}
+.menu-btn span{ width:19px; height:1.6px; background:var(--ink); border-radius:2px; transition:transform 0.3s var(--ease), opacity 0.2s; }
+.menu-btn.open{ background:rgba(255,255,255,0.95); }
+.menu-btn.open span:first-child{ transform:translateY(3.3px) rotate(45deg); }
+.menu-btn.open span:last-child{ transform:translateY(-3.3px) rotate(-45deg); }
+
+/* full-screen menu */
+.menu-overlay{
+  position:fixed; inset:0; z-index:115;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  background:rgba(251,251,253,0.97);
+  backdrop-filter:saturate(180%) blur(22px); -webkit-backdrop-filter:saturate(180%) blur(22px);
+  opacity:0; visibility:hidden; transform:scale(1.02);
+  transition:opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s;
+}
+.menu-overlay.open{ opacity:1; visibility:visible; transform:none; }
+.menu-logo{ width:66px; height:66px; object-fit:contain; margin-bottom:22px; }
+.menu-nav{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+.menu-nav a{
+  font-size:clamp(2rem, 9vw, 2.8rem); font-weight:600; letter-spacing:-0.025em;
+  color:var(--ink); padding:6px 10px; transition:color 0.2s;
+}
+.menu-nav a:hover{ color:var(--violet); }
+.menu-cta{ margin-top:26px; padding:13px 30px; font-size:1rem; }
 
 /* ============================================================
    HERO
@@ -285,9 +302,6 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
    RESPONSIVE — enhance upward from the mobile base
    ============================================================ */
 @media (min-width:734px){
-  .nav-links{ display:flex; }
-  .nav-burger{ display:none; }
-  .nav-drawer{ display:none; }
   .story-full{ min-height:82vh; }
   .story-full .story-copy{ padding-top:13vh; }
   .cosmic{ margin-top:120px; }
