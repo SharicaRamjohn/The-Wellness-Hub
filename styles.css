@@ -173,16 +173,27 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
 .hero-copy{
   position:relative; z-index:1;
   display:flex; flex-direction:column; align-items:center;
-  padding-top:13vh;
+  padding-top:15vh;
 }
-.hero-copy .eyebrow,
-.hero .display,
-.hero-sub{ text-shadow:0 1px 22px rgba(251,251,253,0.7); }
-.hero .display{ font-size:clamp(2.7rem, 12vw, 5rem); }
-.hero-sub{
-  font-weight:500; font-size:clamp(1.3rem, 5.2vw, 1.9rem); letter-spacing:-0.015em;
-  color:var(--ink); margin-top:10px;
+
+/* ---- shared fancy word treatment (hero word + category names) ---- */
+.fancy{ font-family:"Playfair Display", Georgia, "Times New Roman", serif; font-style:italic; font-weight:500; color:var(--violet); }
+.ini{
+  font-family:"Tangerine", "Playfair Display", cursive; font-weight:700;
+  font-size:1.9em; line-height:0; vertical-align:-0.02em; color:var(--violet);
 }
+
+/* ---- hero wordmark: The (top-left, over the W) / Wellness / Hub (bottom-right, under the ss) ---- */
+.wordmark{ display:flex; flex-direction:column; width:fit-content; line-height:1.0; }
+.wordmark, .cat-name{ text-shadow:0 1px 24px rgba(251,251,253,0.85); }
+.wm-minor{ font-family:"Playfair Display", Georgia, serif; font-style:italic; font-weight:500; font-size:clamp(1.5rem, 5.6vw, 2.3rem); letter-spacing:0; color:var(--ink); }
+.wordmark .wm-minor:first-child{ align-self:flex-start; margin-left:0.06em; }
+.wordmark .wm-minor:last-child{ align-self:flex-end; margin-top:0.02em; transform:translateX(1em); }
+.wm-star{ align-self:center; font-size:clamp(3rem, 15vw, 6rem); line-height:1.0; margin-top:0.22em; }
+
+/* ---- category names ---- */
+.cat-name{ font-size:clamp(2.5rem, 11vw, 4rem); line-height:1.1; }
+
 .hero .link-row{ justify-content:center; margin-top:20px; }
 
 /* ============================================================
@@ -318,9 +329,10 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; color
 
 @media (min-width:1068px){
   .hero{ min-height:92vh; }
-  .hero-copy{ padding-top:15vh; }
+  .hero-copy{ padding-top:16vh; }
   .hero-media img{ object-position:45% 32%; }
-  .hero .display{ font-size:clamp(4rem, 7vw, 5.6rem); }
+  .wm-star{ font-size:clamp(4rem, 8vw, 6.4rem); }
+  .cat-name{ font-size:clamp(3.2rem, 6.5vw, 4.6rem); }
   .story-full{ min-height:88vh; }
   .cosmic{ margin-top:150px; padding:160px 0; }
 }
