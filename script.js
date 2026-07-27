@@ -26,18 +26,21 @@ document.querySelectorAll('.lang-toggle button').forEach(b=>{
 applyLanguage(getStoredLang());
 
 // ============================================================
-// MOBILE DRAWER
+// FULLSCREEN MENU (hamburger)
 // ============================================================
-const burger = document.getElementById('navBurger');
-const drawer = document.getElementById('navDrawer');
-if(burger && drawer){
-  burger.addEventListener('click', ()=>{
-    const open = drawer.classList.toggle('open');
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  drawer.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
-    drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false');
-  }));
+const menuBtn = document.getElementById('menuBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+if(menuBtn && menuOverlay){
+  const setMenu = (open) => {
+    menuOverlay.classList.toggle('open', open);
+    menuBtn.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuOverlay.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  menuBtn.addEventListener('click', ()=> setMenu(!menuOverlay.classList.contains('open')));
+  menuOverlay.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> setMenu(false)));
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && menuOverlay.classList.contains('open')) setMenu(false); });
 }
 
 // ============================================================
