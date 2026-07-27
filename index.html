@@ -16,34 +16,30 @@
 <body>
 
 <!-- ============ NAV ============ -->
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo" aria-label="The Wellness Hub — início">
-      <img src="assets/TWHlogo.png" alt="" class="nav-mark">
-      <span class="nav-word">The Wellness Hub</span>
-    </a>
-    <nav class="nav-links">
-      <a href="loja.html" data-pt="Loja" data-en="Shop">Loja</a>
-      <a href="eventos.html" data-pt="Eventos" data-en="Events">Eventos</a>
-      <a href="jornal.html" data-pt="Jornal" data-en="Journal">Jornal</a>
-      <a href="#visita" data-pt="Contacto" data-en="Contact">Contacto</a>
-    </nav>
-    <div class="nav-right">
-      <div class="lang-toggle" role="group" aria-label="Idioma">
-        <button type="button" data-lang="pt" class="active">PT</button>
-        <button type="button" data-lang="en">EN</button>
-      </div>
-      <a href="#visita" class="pill" data-pt="Visita-nos" data-en="Visit us">Visita-nos</a>
-      <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
-    </div>
+<a id="top"></a>
+
+<!-- ============ FLOATING CONTROLS (no bar) ============ -->
+<div class="lang-float">
+  <div class="lang-toggle" role="group" aria-label="Idioma">
+    <button type="button" data-lang="pt" class="active">PT</button>
+    <button type="button" data-lang="en">EN</button>
   </div>
-  <nav class="nav-drawer" id="navDrawer">
+</div>
+<button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuOverlay">
+  <span></span><span></span>
+</button>
+
+<!-- full-screen menu -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <img src="assets/TWHlogo.png" alt="The Wellness Hub" class="menu-logo">
+  <nav class="menu-nav">
     <a href="loja.html" data-pt="Loja" data-en="Shop">Loja</a>
     <a href="eventos.html" data-pt="Eventos" data-en="Events">Eventos</a>
     <a href="jornal.html" data-pt="Jornal" data-en="Journal">Jornal</a>
     <a href="#visita" data-pt="Contacto" data-en="Contact">Contacto</a>
   </nav>
-</header>
+  <a href="#visita" class="menu-cta pill" data-pt="Visita-nos" data-en="Visit us">Visita-nos</a>
+</div>
 
 <main>
 
